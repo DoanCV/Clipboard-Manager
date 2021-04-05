@@ -1,4 +1,4 @@
 # Clipboard-Manager
 
 ## Introduction (In Progress)
-MERN full-stack web application
+MERN stack web application
