@@ -13,7 +13,7 @@ app.listen(5000, () => console.log("Server started on port 5000"));
 app.use("/snippet", require("./routers/snippetRouter"));
 
 // connect to MongoDB
-    // // mongodb+srv://devistry:<password>@clipboardmanager.oxqfy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+    // mongodb+srv://devistry:<password>@clipboardmanager.oxqfy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
     // databse name: snippet
     // replace password with your own
 mongoose.connect("mongodb+srv://devistry:<password>@clipboardmanager.oxqfy.mongodb.net/snippet?retryWrites=true&w=majority", { 
