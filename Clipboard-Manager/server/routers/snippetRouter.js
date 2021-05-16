@@ -1,18 +1,26 @@
 const router = require("express").Router();
 const Snippet = require("../models/snippetModel");
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     // const body = req.body;
     // console.log(body);
 
     // parse body
     const {title, description, code} = req.body; 
     
+    // validate body
+    if (!description && !code) {
+        return res.status(400).json({ errorMessage: "You need to enter a description or provide code snippet (at least one)." });
+    }
+
     const newSnippet = new Snippet({
         title, description, code
     });
     
-    newSnippet.save();
+    // returns a promise
+    const savedSnippet = await newSnippet.save();
+
+    res.json(savedSnippet);
 });
 
 /*
