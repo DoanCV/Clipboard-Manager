@@ -10,9 +10,7 @@ function clock() {
     <p>It is {new Date().toLocaleTimeString()}</p>
   </div>
   );
-  return e1;
+  ReactDOM.render(e1, document.getElementById("root"));
 }
 
-
-
-ReactDOM.render(null, document.getElementById("root"));
+setInterval(clock, 1000);
