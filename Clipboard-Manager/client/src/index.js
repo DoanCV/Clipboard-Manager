@@ -3,21 +3,16 @@ import ReactDOM from "react-dom";
 
 // React uses jsx
 
-const name = "Jon";
-
-const e1 = (
-  <div className = "green">
-    <h1
-      style = {{
-        background = "orange"
-      }}
-    >
-      Hi {name}
-    </h1>
-
+function clock() {
+  const e1 = (
+  <div>
+    <h1>Clock</h1>
+    <p>It is {new Date().toLocaleTimeString()}</p>
   </div>
+  );
+  return e1;
+}
 
-);
 
 
-ReactDOM.render(e1, document.getElementById("root"));
+ReactDOM.render(null, document.getElementById("root"));
