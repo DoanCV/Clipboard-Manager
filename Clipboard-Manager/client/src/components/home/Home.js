@@ -7,6 +7,9 @@ function Home() {
     // empty array otherwise defaults to undefined
     const [snippets, setSnippets] = useState([]);
 
+    // bool to check editor state, not open by default
+    const [newSnippetEditorOpen, setNewSnippetEditorOpen] = useState(false);
+
     useEffect(() => {
         getSnippets;
     }, []);
@@ -20,10 +23,27 @@ function Home() {
     function renderSnippets() {
         return snippets.map((snippet, i) => {
             return <Snippet key = {i} snippet = {snippet} />;
-        })
+        });
     }
 
-    return <div className = "home">Home</div>
+    return (
+        <div className = "home">
+            {!newSnippetEditorOpen && (
+                <button onClick = {() => setNewSnippetEditorOpen(true)}>
+                    Add a snippet
+                </button>
+            )}
+            {newSnippetEditorOpen && (
+                <div className = "snippet-editor">
+                    <form>
+                        <label htmlFor = "editor-title">Title</label>
+                        <input id = "editor-title" type = "text" />
+                    </form>
+                </div>
+            )}
+            {renderSnippets()}
+        </div>
+    );
 }
 
 export default Home;
