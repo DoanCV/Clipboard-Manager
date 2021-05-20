@@ -24,6 +24,18 @@ function Home() {
         setSnippets(snippetsRes.data);
     }
 
+    async function saveClipboard(e) {
+        e.preventDefault();
+
+        const snippetData = {
+            title: editorTitle ? editorTitle : undefined,
+            description: editorDescription ? editorDescription : undefined,
+            code: editorCode ? editorCode : undefined
+        };
+
+        await Axios.post("http://localhost:5000/snippet/", snippetData);
+    }
+
     // iterate through an array with information set after a response from axios
     function renderSnippets() {
         return snippets.map((snippet, i) => {
@@ -40,7 +52,7 @@ function Home() {
             )}
             {newSnippetEditorOpen && (
                 <div className = "snippet-editor">
-                    <form>
+                    <form onSubmit = {saveClipboard}>
                         <label htmlFor = "editor-title">Title</label>
                         <input 
                             id = "editor-title" 
@@ -63,6 +75,10 @@ function Home() {
                             value = {editorCode}
                             onChange = {(e) => setEditorCode(e.target.value)}
                         />
+
+                        {/* save the snippet */}
+                        <button type = "submit">Save clipboard</button>
+
                     </form>
                 </div>
             )}
