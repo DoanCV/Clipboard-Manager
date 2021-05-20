@@ -11,7 +11,7 @@ function Home() {
     const [newSnippetEditorOpen, setNewSnippetEditorOpen] = useState(false);
 
     useEffect(() => {
-        getSnippets;
+        getSnippets();
     }, []);
 
     async function getSnippets() {
