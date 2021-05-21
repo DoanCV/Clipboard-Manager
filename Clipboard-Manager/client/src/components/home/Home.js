@@ -34,6 +34,16 @@ function Home() {
         };
 
         await Axios.post("http://localhost:5000/snippet/", snippetData);
+
+        closeEditor();
+    }
+
+    // users may not want every clipboard to save, they must be able to cancel
+    function closeEditor() {
+        setNewSnippetEditorOpen(false);
+        setEditorTitle("");
+        setEditorDescription("");
+        setEditorCode("");
     }
 
     // iterate through an array with information set after a response from axios
@@ -78,6 +88,9 @@ function Home() {
 
                         {/* save the snippet */}
                         <button type = "submit">Save clipboard</button>
+                        
+                        {/* cancel the snippet editor */}
+                        <button type = "button" onClick = {closeEditor}>Cancel</button>
 
                     </form>
                 </div>
