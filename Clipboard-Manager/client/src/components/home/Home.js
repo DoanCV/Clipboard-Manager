@@ -35,6 +35,7 @@ function Home() {
 
         await Axios.post("http://localhost:5000/snippet/", snippetData);
 
+        getSnippets();
         closeEditor();
     }
 
@@ -88,7 +89,7 @@ function Home() {
 
                         {/* save the snippet */}
                         <button type = "submit">Save clipboard</button>
-                        
+
                         {/* cancel the snippet editor */}
                         <button type = "button" onClick = {closeEditor}>Cancel</button>
 
