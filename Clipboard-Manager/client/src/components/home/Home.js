@@ -9,7 +9,10 @@ function Home() {
     const [snippets, setSnippets] = useState([]);
 
     // bool to check editor state, not open by default
-    const [newSnippetEditorOpen, setNewSnippetEditorOpen] = useState(false);
+    const [snippetEditorOpen, setSnippetEditorOpen] = useState(false);
+
+    // when user edits, the existing clipboard content must be present in the editor
+    const [editSnippetData, setEditSnippetData] = useState(null);
 
     useEffect(() => {
         getSnippets();
@@ -18,6 +21,12 @@ function Home() {
     async function getSnippets() {
         const snippetsRes = await Axios.get("http://localhost:5000/snippet/");
         setSnippets(snippetsRes.data);
+    }
+
+    // pre-load the current version of clipboard data into the editor
+    function editClipboard(snippetData) {
+        setEditSnippetData(snippetData);
+        setSnippetEditorOpen(true);
     }
 
     // iterate through an array with information set after a response from axios
@@ -33,21 +42,22 @@ function Home() {
         });
 
         return sortedSnippets.map((snippet, i) => {
-            return <Snippet key = {i} snippet = {snippet} getSnippets = {getSnippets} />;
+            return <Snippet key = {i} snippet = {snippet} getSnippets = {getSnippets} editClipboard = {editClipboard} />;
         });
     }
 
     return (
         <div className = "home">
-            {!newSnippetEditorOpen && (
-                <button onClick = {() => setNewSnippetEditorOpen(true)}>
+            {!snippetEditorOpen && (
+                <button onClick = {() => setSnippetEditorOpen(true)}>
                     Add a snippet
                 </button>
             )}
-            {newSnippetEditorOpen && (
+            {snippetEditorOpen && (
                 <SnippetEditor 
-                    setNewSnippetEditorOpen = {setNewSnippetEditorOpen} 
+                    setNewSnippetEditorOpen = {setSnippetEditorOpen} 
                     getSnippets = {getSnippets}
+                    editSnippetData = {editSnippetData}
                 />
             )}
             {renderSnippets()}

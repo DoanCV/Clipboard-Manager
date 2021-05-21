@@ -2,13 +2,13 @@ import Axios from "axios";
 import React from "react";
 
 // destructure object into snippet
-function Snippet({snippet, getSnippets}) {
+function Snippet({snippet, getSnippets, editClipboard}) {
 
     async function deleteClipboard() {
 
         await Axios.delete(`http://localhost:5000/snippet/${snippet._id}`);
         getSnippets();
-        
+
     }
 
     return (
@@ -21,7 +21,7 @@ function Snippet({snippet, getSnippets}) {
                 </pre>
             )}
 
-            
+            <button onClick = {() => editClipboard(snippet)}>Edit Clipboad</button>
             <button onClick = {deleteClipboard}>Delete clipboard</button>
         </div>
     );
