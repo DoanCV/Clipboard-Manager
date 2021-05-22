@@ -55,7 +55,7 @@ function Home() {
             )}
             {snippetEditorOpen && (
                 <SnippetEditor 
-                    setNewSnippetEditorOpen = {setSnippetEditorOpen} 
+                    setSnippetEditorOpen = {setSnippetEditorOpen} 
                     getSnippets = {getSnippets}
                     editSnippetData = {editSnippetData}
                 />

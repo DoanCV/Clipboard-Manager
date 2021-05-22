@@ -1,12 +1,20 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Axios from "axios";
 
-function SnippetEditor(props) {
+function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
 
     // store editor state values
     const [editorTitle, setEditorTitle] = useState("");
     const [editorDescription, setEditorDescription] = useState("");
     const [editorCode, setEditorCode] = useState("");
+
+    useEffect(() => {
+        if (editSnippetData) {
+            setEditorTitle(editSnippetData.title ? editSnippetData.title : "");
+            setEditorDescription(editSnippetData.description ? editSnippetData.description : "");
+            setEditorCode(editSnippetData.code ? editSnippetData.code : "");
+        }
+    }, [editSnippetData]);
 
     async function saveClipboard(e) {
         e.preventDefault();
@@ -19,13 +27,13 @@ function SnippetEditor(props) {
 
         await Axios.post("http://localhost:5000/snippet/", snippetData);
 
-        props.getSnippets();
+        getSnippets();
         closeEditor();
     }
 
     // users may not want every clipboard to save, they must be able to cancel
     function closeEditor() {
-        props.setNewSnippetEditorOpen(false);
+        setSnippetEditorOpen(false);
         setEditorTitle("");
         setEditorDescription("");
         setEditorCode("");
