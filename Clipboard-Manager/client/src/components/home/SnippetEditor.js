@@ -25,7 +25,14 @@ function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
             code: editorCode ? editorCode : undefined
         };
 
-        await Axios.post("http://localhost:5000/snippet/", snippetData);
+        // avoid creating a new snippet from an edit
+            // rather the older version is replaced on a save, via put request, as an update
+        if (!editSnippetData) {
+            await Axios.post("http://localhost:5000/snippet/", snippetData);
+        }
+        else {
+            await Axios.put(`http://localhost:5000/snippet/${editSnippetData._id}`, snippetData);
+        }
 
         getSnippets();
         closeEditor();
