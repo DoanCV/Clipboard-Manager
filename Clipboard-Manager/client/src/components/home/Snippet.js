@@ -22,8 +22,13 @@ function Snippet({snippet, getSnippets, editClipboard}) {
                 </pre>
             )}
 
-            <button onClick = {() => editClipboard(snippet)}>Edit Clipboad</button>
-            <button onClick = {deleteClipboard}>Delete clipboard</button>
+            <button className = "button-edit" onClick = {() => editClipboard(snippet)}>
+                Edit Clipboad
+            </button>
+
+            <button className = "button-delete" onClick = {deleteClipboard}>
+                Delete clipboard
+            </button>
         </div>
     );
 }

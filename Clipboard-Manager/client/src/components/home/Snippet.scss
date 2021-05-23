@@ -1,7 +1,10 @@
+@import "../../style/mixins.scss";
+
 .snippet {
     margin: 1.5rem 0;
     padding: 1rem;
     border-radius: 10px;
+
     background: var(--light-color);
     box-shadow: var(--box-shadow);
 
@@ -10,5 +13,20 @@
     .code {
         margin-bottom: 1rem;
     }
+
+    .code {
+
+        padding: .5rem;
+        border-radius: 5px;
+
+        font-family: monospace;
+        font-size: 1.4rem;
+        background: var(--dark-color);
     
+    }
+
+    .button-edit,
+    .button-delete {
+        @include btn();
+    }
 }

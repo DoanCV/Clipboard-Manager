@@ -17,3 +17,12 @@ body {
     padding: 1rem;
     max-width: 1000px;
 }
+
+// reset browser defaults
+button {
+    border: unset;
+    background: unset;
+    font: unset;
+    color: unset;
+    cursor: pointer;
+}
