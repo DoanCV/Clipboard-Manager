@@ -44,7 +44,6 @@ router.post("/", async (req, res) => {
         const passwordHash = await bcrypt.hash(password, salt);
 
         // add valid user to database
-
         const newUser = new User({
             email,
             passwordHash
