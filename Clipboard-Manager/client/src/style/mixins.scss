@@ -6,3 +6,12 @@
         box-shadow: var(--box-shadow);
     }
 }
+
+@mixin lnk {
+    color: var(--text-link-color);
+    font-weight: bold;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
