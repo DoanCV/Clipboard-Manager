@@ -2,11 +2,7 @@
 
 .snippet {
     margin: 1.5rem 0;
-    padding: 1rem;
-    border-radius: 10px;
-
-    background: var(--light-color);
-    box-shadow: var(--box-shadow);
+    @include card();
 
     .title,
     .description,

@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Snippet from "./Snippet";
 import SnippetEditor from "./SnippetEditor";
 import "./Home.scss";

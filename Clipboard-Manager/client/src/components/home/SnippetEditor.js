@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Axios from "axios";
+import "./SnippetEditor.scss";
 
 function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
 
@@ -73,10 +74,10 @@ function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
                 />
 
                 {/* save the snippet */}
-                <button type = "submit">Save clipboard</button>
+                <button className = "button-save" type = "submit">Save</button>
 
                 {/* cancel the snippet editor */}
-                <button type = "button" onClick = {closeEditor}>Cancel</button>
+                <button className = "button-cancel" type = "button" onClick = {closeEditor}>Cancel</button>
 
             </form>
         </div>

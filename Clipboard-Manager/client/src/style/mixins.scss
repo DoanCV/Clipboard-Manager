@@ -15,3 +15,11 @@
         text-decoration: underline;
     }
 }
+
+@mixin card {
+    padding: 1rem;
+    border-radius: 10px;
+
+    background: var(--light-color);
+    box-shadow: var(--box-shadow);
+}

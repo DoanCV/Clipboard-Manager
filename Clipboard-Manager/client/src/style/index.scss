@@ -34,3 +34,11 @@ a {
     text-decoration: unset;
     @include lnk();
 }
+
+input,
+textarea {
+    border: unset;
+    color: unset;
+    background: unset;
+    font: unset;
+}
