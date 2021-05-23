@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
     try {
@@ -50,6 +51,19 @@ router.post("/", async (req, res) => {
         });
 
         const savedUser = await newUser.save();
+
+        // create login token with JWT token encoding
+            // i want to know who is logged in
+                // note: only my server can modify secret field, so only this sever can validate cookies
+        
+        // structure: header.payload.verify_signature 
+            // payload is just valid user since i only want to show their clipboards        
+        const token = jwt.sign({
+            id: savedUser._id
+        }, process.env.JWT_SECRET);
+
+        // to avoid javascript injection, cookies will not be available in javascript/browser
+        res.cookie("token", token, { httpOnly: true}).send();
 
     }
     catch (err) {
