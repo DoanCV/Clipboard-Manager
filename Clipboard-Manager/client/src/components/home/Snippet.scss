@@ -28,5 +28,17 @@
     .button-edit,
     .button-delete {
         @include btn();
+
+        margin-right: 1rem;
+    }
+
+    .button-edit {
+        background: var(--primary-color);
+        color: var(--text-light-color);
+    }
+
+    .button-delete {
+        background: var(--danger-color);
+        color: var(--text-light-color);
     }
 }

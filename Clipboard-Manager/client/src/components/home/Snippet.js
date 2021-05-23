@@ -27,7 +27,7 @@ function Snippet({snippet, getSnippets, editClipboard}) {
             </button>
 
             <button className = "button-delete" onClick = {deleteClipboard}>
-                Delete clipboard
+                Delete Clipboard
             </button>
         </div>
     );
