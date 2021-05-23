@@ -20,8 +20,11 @@ app.use(
 
 app.listen(5000, () => console.log("Server started on port 5000"));
 
-// set up router
+// set up clipbaords router
 app.use("/snippet", require("./routers/snippetRouter"));
+
+// set up user authentication router
+app.use("/auth", require("./routers/userRouter"));
 
 // connect to MongoDB
     // mongodb+srv://devistry:<password>@clipboardmanager.oxqfy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
