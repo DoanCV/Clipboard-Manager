@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React from "react";
+import "./Snippet.scss";
 
 // destructure object into snippet
 function Snippet({snippet, getSnippets, editClipboard}) {
@@ -13,10 +14,10 @@ function Snippet({snippet, getSnippets, editClipboard}) {
 
     return (
         <div className = "snippet">
-            {snippet.title && <h2>{snippet.title}</h2>}
-            {snippet.description && <p>{snippet.description}</p>}
+            {snippet.title && <h2 className = "title">{snippet.title}</h2>}
+            {snippet.description && <p className = "description">{snippet.description}</p>}
             {snippet.code && (
-                <pre>
+                <pre className = "code">
                     <code>{snippet.code}</code>
                 </pre>
             )}
