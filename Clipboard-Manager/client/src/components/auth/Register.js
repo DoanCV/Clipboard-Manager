@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./AuthForm.scss";
 
 function Register() {
     const [formEmail, setFormEmail] = useState("");

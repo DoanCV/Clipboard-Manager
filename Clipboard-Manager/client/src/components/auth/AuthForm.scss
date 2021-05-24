@@ -1,0 +1,7 @@
+// same styling for register and login components
+    // reuse the card from mixins
+@import "../../style/mixins.scss";
+
+.auth-form {
+    @include card();
+}
