@@ -23,7 +23,7 @@ function Register() {
     return (
         <div className = "auth-form">
             <h2>Register a new account</h2>
-            <form onSubmit = {register}>
+            <form className = "form" onSubmit = {register}>
                 <label htmlFor = "form-email">Email</label>
                 <input 
                     id = "form-email"
@@ -48,7 +48,7 @@ function Register() {
                     onChange = { (e) => setFormPasswordConfirm(e.target.value) } 
                 />
 
-                <button type = "submit">Register</button>
+                <button className = "button-register" type = "submit">Register</button>
             </form>
         
             <p>

@@ -21,7 +21,7 @@ function Login() {
     return (
         <div className = "auth-form">
             <h2>Login</h2>
-            <form onSubmit = {login}>
+            <form className = "form" onSubmit = {login}>
                 <label htmlFor = "form-email">Email</label>
                 <input 
                     id = "form-email"
@@ -38,7 +38,7 @@ function Login() {
                     onChange = { (e) => setFormPassword(e.target.value) } 
                 />
 
-                <button type = "submit">Login</button>
+                <button className = "button-login" type = "submit">Login</button>
             </form>
         
             <p>
