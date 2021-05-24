@@ -1,13 +1,13 @@
 const router = require("express").Router();
 const Snippet = require("../models/snippetModel"); 
-
+const auth = require("../middleware/auth");
 
 // Read clip endpoint
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
 
     try {
 
-        const snippets = await Snippet.find();
+        const snippets = await Snippet.find({user: req.user});
         res.json(snippets);
 
     }
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 
 
 // Create clip endpoint
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
 
     try {
 
@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
         }
 
         const newSnippet = new Snippet({
-            title, description, code
+            title, description, code, user: req.user
         });
         
         // returns a promise
@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
 
 
 // Update clip endpoint
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
 
     try {
 
@@ -85,6 +85,11 @@ router.put("/:id", async (req, res) => {
             return res.status(400).json( { errorMessage: "Contact developer with this query: Missing clip with given snippetID" } );
         }
 
+        // check if the old clipboard is assoicated with the user trying to update
+        if (oldSnippet.user.toString() !== req.user) {
+            return res.status(401).json( { errorMessage: "Unauthorized"} );
+        }
+
         oldSnippet.title = title;
         oldSnippet.description = description;
         oldSnippet.code = code;
@@ -106,7 +111,7 @@ router.put("/:id", async (req, res) => {
 
 
 // Delete clip endpoint
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
 
     try {
 
@@ -121,6 +126,11 @@ router.delete("/:id", async (req, res) => {
         const existingSnippet = await Snippet.findById(snippetID);
         if (!existingSnippet){
             return res.status(400).json( { errorMessage: "Contact developer with this query: Missing clip with given snippetID" } );
+        }
+
+        // check if the existing clipboard is assoicated with the user trying to delete
+        if (existingSnippet.user.toString() !== req.user) {
+            return res.status(401).json( { errorMessage: "Unauthorized"} );
         }
 
         // await Snippet.findByIdAndDelete();

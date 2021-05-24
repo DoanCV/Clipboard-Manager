@@ -62,12 +62,55 @@ router.post("/", async (req, res) => {
         }, process.env.JWT_SECRET);
 
         // to avoid javascript injection, cookies will not be available in javascript/browser
-        res.cookie("token", token, { httpOnly: true}).send();
+        res.cookie("token", token, { httpOnly: true }).send();
 
     }
     catch (err) {
         res.status(500).send();
     }
+});
+
+router.post("/login", async (req, res) => {
+    try {
+
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({
+                errorMessage: "You are missing required fields. Fill them in."
+            });
+        }
+
+        // get user account
+        const existingUser = await User.findOne({email: email});
+        if (!existingUser) {
+            return res.status(400).json({
+                errorMessage: "Incorrect email or password. Which one? You tell me."
+            });
+        }
+
+        // before creating the token, check if the password is correct
+        const correctPassword = await bcrypt.compare(password, existingUser.passwordHash);
+
+        if (!correctPassword) {
+            return res.status(400).json({
+                errorMessage: "Incorrect email or password. Which one? You tell me."
+            });
+        }
+
+        // create login JWT token 
+        const token = jwt.sign({
+            id: savedUser._id
+        }, process.env.JWT_SECRET);
+
+        // avoid javascript injection
+        res.cookie("token", token, { httpOnly: true }).send();
+
+    }
+    catch (err) {
+        res.status(500).send();
+    }
+
 });
 
 module.exports = router;
