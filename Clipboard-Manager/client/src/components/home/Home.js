@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Snippet from "./Snippet";
 import SnippetEditor from "./SnippetEditor";
 import "./Home.scss";
-import UserContext from "../../context/userContext";
+import UserContext from "../../context/UserContext";
 
 function Home() {
 
@@ -17,7 +17,8 @@ function Home() {
     const [editSnippetData, setEditSnippetData] = useState(null);
 
     // when user is logged in
-    const user = useContext(UserContext);
+        // destructure from object whihc has two components
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
         getSnippets();
