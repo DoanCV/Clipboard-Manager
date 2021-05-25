@@ -7,8 +7,12 @@ function Snippet({snippet, getSnippets, editClipboard}) {
 
     async function deleteClipboard() {
 
-        await Axios.delete(`http://localhost:5000/snippet/${snippet._id}`);
-        getSnippets();
+        if (window.confirm("Are you sure you want to delete this clipboard?")) {
+
+            await Axios.delete(`http://localhost:5000/snippet/${snippet._id}`);
+            getSnippets();
+
+        }
 
     }
 
