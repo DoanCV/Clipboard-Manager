@@ -84,7 +84,7 @@ router.post("/login", async (req, res) => {
         // get user account
         const existingUser = await User.findOne({email: email});
         if (!existingUser) {
-            return res.status(400).json({
+            return res.status(401).json({
                 errorMessage: "Incorrect email or password. Which one? You tell me."
             });
         }
@@ -93,7 +93,7 @@ router.post("/login", async (req, res) => {
         const correctPassword = await bcrypt.compare(password, existingUser.passwordHash);
 
         if (!correctPassword) {
-            return res.status(400).json({
+            return res.status(401).json({
                 errorMessage: "Incorrect email or password. Which one? You tell me."
             });
         }
@@ -109,6 +109,25 @@ router.post("/login", async (req, res) => {
     }
     catch (err) {
         res.status(500).send();
+    }
+
+});
+
+router.get("/loggedIn", (req, res) => {
+    try {
+
+        const token = req.cookies.token;
+        if (!token) {
+            return res.json(null);
+        }
+
+        const validateUser = jwt.verify(token, process.env.JWT_SECRET);
+        
+        res.json(validateUser.id);
+
+    }
+    catch (err) {
+        return res.json(null);
     }
 
 });

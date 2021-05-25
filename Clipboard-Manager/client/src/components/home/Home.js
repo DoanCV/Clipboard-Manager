@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Snippet from "./Snippet";
 import SnippetEditor from "./SnippetEditor";
 import "./Home.scss";
+import UserContext from "../../context/userContext";
 
 function Home() {
 
@@ -14,6 +15,9 @@ function Home() {
 
     // when user edits, the existing clipboard content must be present in the editor
     const [editSnippetData, setEditSnippetData] = useState(null);
+
+    // when user is logged in
+    const user = useContext(UserContext);
 
     useEffect(() => {
         getSnippets();
@@ -49,7 +53,7 @@ function Home() {
 
     return (
         <div className = "home">
-            {!snippetEditorOpen && (
+            {!snippetEditorOpen && user && (
                 <button className = "button-editor-toggle" onClick = {() => setSnippetEditorOpen(true)}>
                     Add a snippet
                 </button>

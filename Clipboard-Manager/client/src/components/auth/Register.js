@@ -18,7 +18,7 @@ function Register() {
         }
 
         await axios.post("http://localhost:5000/auth/", registerData);
-    }
+    };
 
     return (
         <div className = "auth-form">
