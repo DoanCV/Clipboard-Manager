@@ -20,9 +20,17 @@ function Home() {
         // destructure from object whihc has two components
     const { user } = useContext(UserContext);
 
+    // callback will not complete when we do not have a valid user, clear home page of snippets
     useEffect(() => {
-        getSnippets();
-    }, []);
+
+        if (!user) {
+            setSnippets([]);          
+        }
+        else {
+            getSnippets();
+        }
+
+    }, [user]);
 
     async function getSnippets() {
         const snippetsRes = await Axios.get("http://localhost:5000/snippet/");
@@ -66,7 +74,15 @@ function Home() {
                     editSnippetData = {editSnippetData}
                 />
             )}
-            {renderSnippets()}
+            {renderSnippets() && snippets.length > 0}
+            {
+                user === null && (
+                    <>
+                        <h2>Welcome to Clipboard Manager</h2>
+                        <Link to = "/register">Register here</Link>
+                    </>
+                    )
+            }
         </div>
     );
 }
