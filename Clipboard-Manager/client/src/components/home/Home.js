@@ -74,13 +74,17 @@ function Home() {
                     editSnippetData = {editSnippetData}
                 />
             )}
-            {renderSnippets() && snippets.length > 0}
+            {
+                snippets.length > 0 ? renderSnippets() : user && ( 
+                        <p className = "no-clipboards-message">You have no clipboards</p> 
+                    )
+            }
             {
                 user === null && (
-                    <>
+                    <div className = "null-user-message">
                         <h2>Welcome to Clipboard Manager</h2>
                         <Link to = "/register">Register here</Link>
-                    </>
+                    </div>
                     )
             }
         </div>

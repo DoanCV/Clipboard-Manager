@@ -5,4 +5,32 @@
         @include btn();
         background: var(--light-color);
     }
+
+    .no-clipboards-message {
+        margin-top: 2rem;
+        color: var(--text-light-color);
+        font-weight: bold;
+    }
+
+    .null-user-message {
+        margin-top: 6rem;
+        color: var(--text-light-color);
+        text-align: center;
+        
+        h2 {
+            font-size: 3rem;
+        }
+
+        a {
+            @include btn();
+            margin-top: 3rem;
+            display: inline-block;
+            color: var(--text-dark-color);
+            background: var(--light-color);
+
+            &:hover {
+                text-decoration: unset;
+            }
+        }
+    }
 }
