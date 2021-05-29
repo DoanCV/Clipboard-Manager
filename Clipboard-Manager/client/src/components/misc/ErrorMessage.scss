@@ -1,0 +1,25 @@
+@import "../../style/mixins.scss";
+
+.error-message {
+
+    padding: .3rem;
+    border: 1px solid var(--danger-color);
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    background: var(--danger-light-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+        color: var(--text-warning-color);
+    }
+
+    button {
+        @include btn();
+        padding: .1rem .4rem;
+        background: var(--danger-color);
+        color: var(--text-light-color);
+    }
+    
+}

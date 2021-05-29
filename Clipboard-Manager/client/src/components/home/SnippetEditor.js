@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Axios from "axios";
 import "./SnippetEditor.scss";
+import ErrorMessage from "../misc/ErrorMessage";
 
 function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
 
@@ -8,6 +9,9 @@ function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
     const [editorTitle, setEditorTitle] = useState("");
     const [editorDescription, setEditorDescription] = useState("");
     const [editorCode, setEditorCode] = useState("");
+
+    // Display error messages to user instead of http error codes
+    const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
         if (editSnippetData) {
@@ -28,11 +32,20 @@ function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
 
         // avoid creating a new snippet from an edit
             // rather the older version is replaced on a save, via put request, as an update
-        if (!editSnippetData) {
-            await Axios.post("http://localhost:5000/snippet/", snippetData);
+        try {
+            if (!editSnippetData) {
+                await Axios.post("http://localhost:5000/snippet/", snippetData);
+            }
+            else {
+                await Axios.put(`http://localhost:5000/snippet/${editSnippetData._id}`, snippetData);
+            }
         }
-        else {
-            await Axios.put(`http://localhost:5000/snippet/${editSnippetData._id}`, snippetData);
+        catch (err) {
+            if (err.response) {
+                if (err.response.data.errorMessage) {
+                    setErrorMessage(err.response.data.errorMessage);
+                }
+            }
         }
 
         getSnippets();
@@ -49,6 +62,16 @@ function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
 
     return (
         <div className = "snippet-editor">
+
+            {
+                errorMessage && (
+                    <ErrorMessage 
+                        message = {errorMessage} 
+                        clear = {() => setErrorMessage(null)}
+                    />
+                )
+            }
+
             <form className = "form" onSubmit = {saveClipboard}>
                 <label htmlFor = "editor-title">Title</label>
                 <input 
