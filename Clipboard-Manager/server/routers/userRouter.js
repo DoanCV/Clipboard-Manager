@@ -100,7 +100,7 @@ router.post("/login", async (req, res) => {
 
         // create login JWT token 
         const token = jwt.sign({
-            id: savedUser._id
+            id: existingUser._id
         }, process.env.JWT_SECRET);
 
         // avoid javascript injection
