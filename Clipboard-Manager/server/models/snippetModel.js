@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 // design table
-const snippetSchema = new mongoose.Schema({
+const snippetSchema = new mongoose.Schema(
+    
+    {
         title: {type: String},
         description: {type: String},
         code: {type: String},

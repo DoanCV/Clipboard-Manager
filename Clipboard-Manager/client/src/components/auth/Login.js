@@ -22,7 +22,7 @@ function Login() {
         const loginData = {
             email: formEmail,
             password: formPassword
-        }
+        };
 
         try {
             await axios.post("http://localhost:5000/auth/login", loginData);
@@ -33,6 +33,7 @@ function Login() {
                     setErrorMessage(err.response.data.errorMessage);
                 }
             }
+            return;
         }
 
         await getUser();

@@ -39,11 +39,12 @@ mongoose.connect(process.env.MDB_CONNECT_STRING, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 }, (err) => {
-    if (err) {
-        return console.error(err);
+        if (err) {
+            return console.error(err);
+        }
+        console.log("Connected to MongoDB");
     }
-    console.log("Connected to MongoDB");
-});
+);
 
 
 
