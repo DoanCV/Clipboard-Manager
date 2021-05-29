@@ -24,7 +24,7 @@ function Register() {
             email: formEmail,
             password: formPassword,
             passwordConfirm: formPasswordConfirm
-        }
+        };
 
         try {
             await axios.post("http://localhost:5000/auth/", registerData);
@@ -35,6 +35,7 @@ function Register() {
                     setErrorMessage(err.response.data.errorMessage);
                 }
             }
+            return;
         }
 
         await getUser();
@@ -86,7 +87,8 @@ function Register() {
                 Already registered? <Link to = "/login">Login here instead</Link>
             </p>
 
-        </div>);
+        </div>
+    );
 }
 
 export default Register;

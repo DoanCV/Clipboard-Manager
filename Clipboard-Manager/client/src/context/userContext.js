@@ -16,9 +16,10 @@ function UserContextProvider(props) {
     }, []);
 
     return (
-        <UserContext.Provider value = {{user, getUser}}>
+        <UserContext.Provider value = {{ user, getUser }}>
             {props.children}
-        </UserContext.Provider>);
+        </UserContext.Provider>
+    );
 };
 
 export default UserContext;

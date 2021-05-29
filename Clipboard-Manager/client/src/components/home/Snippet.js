@@ -3,7 +3,7 @@ import React from "react";
 import "./Snippet.scss";
 
 // destructure object into snippet
-function Snippet({snippet, getSnippets, editClipboard}) {
+function Snippet({ snippet, getSnippets, editClipboard }) {
 
     async function deleteClipboard() {
 

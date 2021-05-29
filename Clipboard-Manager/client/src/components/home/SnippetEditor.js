@@ -46,6 +46,7 @@ function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
                     setErrorMessage(err.response.data.errorMessage);
                 }
             }
+            return;
         }
 
         getSnippets();
