@@ -3,7 +3,7 @@ import Axios from "axios";
 import "./SnippetEditor.scss";
 import ErrorMessage from "../misc/ErrorMessage";
 
-function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
+function SnippetEditor({ getSnippets, setSnippetEditorOpen, editSnippetData }) {
 
     // store editor state values
     const [editorTitle, setEditorTitle] = useState("");
@@ -56,9 +56,10 @@ function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}) {
     // users may not want every clipboard to save, they must be able to cancel
     function closeEditor() {
         setSnippetEditorOpen(false);
-        setEditorTitle("");
-        setEditorDescription("");
         setEditorCode("");
+        setEditorDescription("");
+        setEditorTitle("");
+        
     }
 
     return (
