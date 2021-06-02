@@ -9,5 +9,5 @@ MongoDB, Express.js, React.js, Node.js
 
 ## Demo (via Localhost)
 
-I tested my application with Microsoft Edge for the developer tools. The network tab was quite useful for server responses and requests. The application tab was great for tracking cookies to identify user login sessions. I also used the React extension to track my components on the frontend. 
-Note: I chose Microsoft Edge since I do like the rewards system for searching as I donate points to charity and exchange points for PC games.
+I tested my application with Microsoft Edge for the developer tools. The network tab was quite useful for server responses and requests. The application tab was great for tracking cookies to identify user login sessions. I also used the React extension to track my components on the frontend. <br>
+###### Note: I chose Microsoft Edge since I do like the rewards system for searching as I donate points to charity and exchange points for PC games.
