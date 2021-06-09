@@ -65,7 +65,7 @@ function Home() {
         <div className = "home">
             {!snippetEditorOpen && user && (
                 <button className = "button-editor-toggle" onClick = {() => setSnippetEditorOpen(true)}>
-                    Add a snippet
+                    Add a new clipboard
                 </button>
             )}
             {snippetEditorOpen && (
