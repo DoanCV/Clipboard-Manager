@@ -1,4 +1,4 @@
-# Clipboard-Manager
+# ReNoteWork
 
 ## Introduction
 I often find interesting code snippets that I want to store somewhere to later review. In other situations, I may come across useful pseudocode which I would like to study later. However, I often find multiple blocks of code, notes, and text that I want to keep somewhere in an organized manner. I can create multiple files to store content but then I would need to find the files. Note taking applications help with organization but they lack the ability to maintain code snippets and often comes with a paywall. VSCode, a popular IDE, stores snippets but in JSON format which is not very easy to manage. This web application solves my problem locally. In the future, I also want to explore deployment since I am interested in all parts of the development cycle.
